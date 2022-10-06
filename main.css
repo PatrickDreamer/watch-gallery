@@ -254,3 +254,25 @@
   border: 2px solid black;
   border-radius: 10px;
 }
+
+/* login page */
+
+.m-5 {
+  text-align: center;
+  width: 100%;
+}
+
+.inputarea {
+  width: 50%;
+  padding: 20px;
+}
+.submitbtn {
+  font-size: 24px;
+  color: white;
+  background-color: #008cba;
+  margin: 20px;
+}
+
+#eye {
+  margin-left: -40px;
+}

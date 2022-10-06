@@ -10,7 +10,62 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <script src="/main.js">
+      // for home page
+      function addItem2(ele) {
+        let item = {};
+        item.name =
+          ele.parentElement.parentElement.parentElement.querySelector(
+            ".product_name"
+          ).innerHTML;
+        item.price =
+          ele.parentElement.parentElement.querySelector(".product_price").innerHTML;
+        item.image =
+          ele.parentElement.parentElement.parentElement.querySelector(".product_img").src;
+        let shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
+        if (shoppingCart == null) shoppingCart = [];
+        shoppingCart.push(item);
+        localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+        displayShoppingCart();
+      }
+      function displayShoppingCart() {
+        console.log("999");
+        let content = "";
+        total_amt = 0;
+        let shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
+        console.log("999", shoppingCart);
+        if (shoppingCart == null) shoppingCart = [];
+        shoppingCart.forEach((item) => {
+          total_amt += parseInt(item.price);
+          content += `
+          <div class="cart_item">
+            <img
+              class="cart_item_img"
+              src="${item.image}"
+              alt="product image"
+            />
+            <div class="cart_item_title">
+              ${item.name}
+              </div>
+            <div>$${item.price}</div>
+            <button class="btn btn-secondary btn-remove" onclick="removeItem(${item.index})">Remove</button>
+          </div>
+          `;
+        });
+        document.getElementById("shoppingcart").innerHTML = content;
+        document.getElementById("total_amt").innerHTML = "$" + total_amt;
+        document.querySelector(".badge").innerHTML = shoppingCart.length;
+        console.log("999", total_amt);
+      }
+      function removeItem(index) {
+        let shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
+        if (shoppingCart == null) shoppingCart = [];
 
+        shoppingCart.splice(index, 1);
+        localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+        displayShoppingCart();
+      }
+    </script>
     <link rel="stylesheet" href="main.css" />
     <title>Melbourne Watch Gallery</title>
   </head>
@@ -57,45 +112,45 @@
     <div class="grid-container">
       <div class="item1">
         <div>
-          <h3>Sumsung Galaxy Watch 4</h3>
+          <h3 class="product_name">Sumsung Galaxy Watch 4</h3>
         </div>
         <div class="productimg">
-          <img alt="productimg" src="/images/SamsungGalaxyWatch4.png" />
+          <img class="product_img" alt="productimg" src="/images/SamsungGalaxyWatch4.png" />
         </div>
         <div class="productgrid">
-          <div class="price"><h2>$380</h2></div>
+          <div class="price"><h2>$<span class="product_price">380</span></h2></div>
           <div class="button">
-            <button class="addbtn">Add to cart</button>
+            <button class="addbtn" onclick="addItem2(this)">Add to cart</button>
           </div>
         </div>
       </div>
 
       <div class="item2">
         <div>
-          <h3>Apple Watch SE Gold</h3>
+          <h3 class="product_name">Apple Watch SE Gold</h3>
         </div>
         <div class="productimg">
-          <img alt="productimg" src="/images/AppleWatchSE40.png" />
+          <img class="product_img" alt="productimg" src="/images/AppleWatchSE40.png" />
         </div>
         <div class="productgrid">
-          <div class="price"><h2>$400</h2></div>
+          <div class="price"><h2>$<span class="product_price">400</span></h2></div>
           <div class="button">
-            <button class="addbtn">Add to cart</button>
+            <button class="addbtn" onclick="addItem2(this)">Add to cart</button>
           </div>
         </div>
       </div>
 
       <div class="item3">
         <div>
-          <h3>Fitbit Versa 2 Black</h3>
+          <h3 class="product_name">Fitbit Versa 2 Black</h3>
         </div>
         <div class="productimg">
-          <img alt="productimg" src="/images/Fitbitblack.png" />
+          <img class="product_img" alt="productimg" src="/images/Fitbitblack.png" />
         </div>
         <div class="productgrid">
-          <div class="price"><h2>$290</h2></div>
+          <div class="price"><h2>$<span class="product_price">290</span></h2></div>
           <div class="button">
-            <button class="addbtn">Add to cart</button>
+            <button class="addbtn" onclick="addItem2(this)">Add to cart</button>
           </div>
         </div>
       </div>
@@ -103,48 +158,48 @@
       <div class="item4">
         <div>
           <a href="/products page/fitbitversa2rose.html">
-            <h3>Fitbit Versa 2 Rose</h3>
+            <h3 class="product_name">Fitbit Versa 2 Rose</h3>
           </a>
         </div>
         <div class="productimg">
           <a href="/products page/fitbitversa2rose.html">
-            <img alt="productimg" src="/images/Fitbitrose.png" />
+            <img class="product_img" alt="productimg" src="/images/Fitbitrose.png" />
           </a>
         </div>
         <div class="productgrid">
-          <div class="price"><h2>$290</h2></div>
+          <div class="price"><h2>$<span class="product_price">290</span></div>
           <div class="button">
-            <button class="addbtn">Add to cart</button>
+            <button class="addbtn" onclick="addItem2(this)">Add to cart</button>
           </div>
         </div>
       </div>
 
       <div class="item5">
         <div>
-          <h3>Fitbit Charge 5</h3>
+          <h3 class="product_name">Fitbit Charge 5</h3>
         </div>
         <div class="productimg">
-          <img alt="productimg" src="/images/FitbitCharger5.png" />
+          <img class="product_img" alt="productimg" src="/images/FitbitCharger5.png" />
         </div>
         <div class="productgrid">
-          <div class="price"><h2>$290</h2></div>
+          <div class="price"><h2>$<span class="product_price">290</span></div>
           <div class="button">
-            <button class="addbtn">Add to cart</button>
+            <button class="addbtn" onclick="addItem2(this)">Add to cart</button>
           </div>
         </div>
       </div>
 
       <div class="item6">
         <div>
-          <h3>Apple Watch NIke SE</h3>
+          <h3 class="product_name">Apple Watch NIke SE</h3>
         </div>
         <div class="productimg">
-          <img alt="productimg" src="/images/AppleWatchNike.png" />
+          <img class="product_img" alt="productimg" src="/images/AppleWatchNike.png" />
         </div>
         <div class="productgrid">
-          <div class="price"><h2>$450</h2></div>
+          <div class="price"><h2>$<span class="product_price">450</span></h2></div>
           <div class="button">
-            <button class="addbtn">Add to cart</button>
+            <button class="addbtn" onclick="addItem2(this)">Add to cart</button>
           </div>
         </div>
       </div>
@@ -154,63 +209,7 @@
           <div class="cartgrid1">
             <h3>Shopping Cart</h3>
           </div>
-
-          <div class="cartgrid2">
-            <div class="cartgriditem1">
-              <div class="cartgriditem11">
-                <img
-                  class="cartimg"
-                  alt="productimg"
-                  src="/images/Fitbitrose.png"
-                />
-              </div>
-              <div class="cartgriditem12">
-                <h4>Fitbit Versa 2 Rose</h4>
-                <div><button class="removebtn">Remove</button></div>
-              </div>
-              <div class="cartgriditem13">
-                <p class="cartprice">$290</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="cartgrid3">
-            <div class="cartgriditem1">
-              <div class="cartgriditem11">
-                <img
-                  class="cartimg"
-                  alt="productimg"
-                  src="/images/SamsungGalaxyWatch4.png"
-                />
-              </div>
-              <div class="cartgriditem12">
-                <h4>Sumsung Galaxy Watch 4</h4>
-                <div><button class="removebtn">Remove</button></div>
-              </div>
-              <div class="cartgriditem13">
-                <p class="cartprice">$380</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="cartgrid4">
-            <div class="cartgriditem1">
-              <div class="cartgriditem11">
-                <img
-                  class="cartimg"
-                  alt="productimg"
-                  src="/images/Fitbitblack.png"
-                />
-              </div>
-              <div class="cartgriditem12">
-                <h4>Fitbit Versa 2 Black</h4>
-                <div><button class="removebtn">Remove</button></div>
-              </div>
-              <div class="cartgriditem13">
-                <p class="cartprice">$450</p>
-              </div>
-            </div>
-          </div>
+          <div id="shoppingcart"></div>
 
           <div class="cartgrid5">
             <div class="cartgriditem2">
@@ -218,14 +217,14 @@
                 <h3>Total</h3>
               </div>
               <div>
-                <h3>$1120</h3>
+                <h3><span id="total_amt">0</span></h3>
               </div>
             </div>
           </div>
 
           <div class="cartgrid6">
             <div>
-              <button class="buy">Check out &#9314;</button>
+              <button class="buy">Check out <span class="badge badge-secondary">0</button>
             </div>
           </div>
         </div>

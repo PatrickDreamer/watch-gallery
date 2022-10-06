@@ -11,9 +11,61 @@
       crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="product.css" />
+
     <title>Melbourne Watch Gallery</title>
-    <script rel="product" href="product.js"></script>
+    <script>
+      function changeimage(ele) {
+        document.querySelector(".sideimg").src = ele.src;
+      }
+      function additem() {
+        let item = {};
+        item.name = document.querySelector(".item_title").innerHTML;
+        item.price = document.querySelector(".item_value").innerHTML;
+        item.image = document.querySelector(".mainimg").src;
+        let shoppingcart = JSON.parse(localStorage.getItem("shoppingcart"));
+        if (shoppingcart == null) shoppingcart = [];
+        shoppingcart.push(item);
+        localStorage.setItem("shoppingcart", JSON.stringify(shoppingcart));
+        displayshoppingcart();
+      }
+      function displayshoppingcart() {
+        console.log("999");
+        let content = "";
+        total_amt = 0;
+        let shoppingcart = JSON.parse(localStorage.getItem("shoppingcart"));
+        console.log("999", shoppingcart);
+        if (shoppingcart == null) shoppingcart = [];
+        shoppingcart.forEach((item) => {
+          total_amt += parseInt(item.price);
+          content += `
+          <div class="cart_item">
+            <img
+              class="sideimg"
+              src="${item.image}"
+              alt="product image"
+            />
+            <div class="cart_item_title">
+              ${item.name}
+              </div>
+            <div>$${item.price}</div>
+            <button class="btn btn-secondary btn-remove" onclick="removeItem(${item.index})">Remove</button>
+          </div>
+          `;
+        });
+        document.getElementById("shoppingcart").innerHTML = content;
+        document.getElementById("total_amt").innerHTML = "$" + total_amt;
+        document.querySelector(".badge").innerHTML = shoppingcart.length;
+      }
+      function removeItem(index) {
+        let shoppingcart = JSON.parse(localStorage.getItem("shoppingcart"));
+        if (shoppingcart == null) shoppingcart = [];
+
+        shoppingcart.splice(index, 1);
+        localStorage.setItem("shoppingcart", JSON.stringify(shoppingcart));
+        displayshoppingcart();
+      }
+    </script>
   </head>
   <body>
     <!-- Navigation bar -->
@@ -30,7 +82,7 @@
               <a class="nav-link" href="/about.html">About us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="ProductManagement.html"
+              <a class="nav-link" href="/loginpage.html"
                 >Product Management</a
               >
             </li>
@@ -70,21 +122,25 @@
 
           <div class="gridcontainer112">
             <img
+              onmouseover="changeimage(this)"
               class="sideimg"
               alt="productimg"
-              src="/images/fitbitrosefrontview.png"
+              src="https://cdn.shopify.com/s/files/1/0024/9803/5810/products/398459-Product-1-I_2b73ab39-8f42-49d2-8f70-fa9b7611b452_934x.jpg?v=1572323646"
             />
             <img
+              onmouseover="changeimage(this)"
               class="sideimg"
               alt="productimg"
               src="/images/fitbitrosebackview.png"
             />
             <img
+              onmouseover="changeimage(this)"
               class="sideimg"
               alt="productimg"
               src="/images/fibitrosesideview.gif"
             />
             <img
+              onmouseover="changeimage(this)"
               class="sideimg"
               alt="productimg"
               src="/images/fitbitrosetop.png"
@@ -95,10 +151,12 @@
 
       <div class="gridcontainer2">
         <div>
-          <h2>Fitbit Versa 2 Smart Fitness Watch (Petal/Copper Rose)</h2>
+          <h2 class="item_title">
+            Fitbit Versa 2 Smart Fitness Watch (Petal/Copper Rose)
+          </h2>
           <p>MODEL: VERSA2-PETAL(FB507RGPK) SKU: 398459</p>
-          <h3>$290</h3>
-          <button class="addbtn" onclick="addItem()">Add to cart</button>
+          <h3>$<span class="item_value">290</span></h3>
+          <button class="addbtn" onclick="additem()">Add to cart</button>
           <h2>Product Overview</h2>
           <p>
             Live your best life with the Fitbit Versa family of health & fitness
@@ -111,67 +169,12 @@
       </div>
 
       <div class="gridcontainer3">
-        <div class="shopcartgrid">
+        <div class="shopping_list">
           <div class="cartgrid1">
             <h3>Shopping Cart</h3>
           </div>
 
-          <div class="cartgrid2">
-            <div class="cartgriditem1">
-              <div class="cartgriditem11">
-                <img
-                  class="cartimg"
-                  alt="productimg"
-                  src="/images/Fitbitrose.png"
-                />
-              </div>
-              <div class="cartgriditem12">
-                <h4>Fitbit Versa 2 Rose</h4>
-                <div><button class="removebtn">Remove</button></div>
-              </div>
-              <div class="cartgriditem13">
-                <p class="cartprice">$290</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="cartgrid3">
-            <div class="cartgriditem1">
-              <div class="cartgriditem11">
-                <img
-                  class="cartimg"
-                  alt="productimg"
-                  src="/images/SamsungGalaxyWatch4.png"
-                />
-              </div>
-              <div class="cartgriditem12">
-                <h4>Sumsung Galaxy Watch 4</h4>
-                <div><button class="removebtn">Remove</button></div>
-              </div>
-              <div class="cartgriditem13">
-                <p class="cartprice">$380</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="cartgrid4">
-            <div class="cartgriditem1">
-              <div class="cartgriditem11">
-                <img
-                  class="cartimg"
-                  alt="productimg"
-                  src="/images/Fitbitblack.png"
-                />
-              </div>
-              <div class="cartgriditem12">
-                <h4>Fitbit Versa 2 Black</h4>
-                <div><button class="removebtn">Remove</button></div>
-              </div>
-              <div class="cartgriditem13">
-                <p class="cartprice">$450</p>
-              </div>
-            </div>
-          </div>
+          <div id="shoppingcart"></div>
 
           <div class="cartgrid5">
             <div class="cartgriditem2">
@@ -179,14 +182,14 @@
                 <h3>Total</h3>
               </div>
               <div>
-                <h3>$1120</h3>
+                <h3><span id="total_amt">0</span></h3>
               </div>
             </div>
           </div>
 
           <div class="cartgrid6">
             <div>
-              <button class="buy">Check out &#9314;</button>
+              <button class="buy">Check out <span class="badge badge-secondary">0</button>
             </div>
           </div>
         </div>

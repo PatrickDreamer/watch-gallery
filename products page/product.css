@@ -101,6 +101,7 @@
   border: 2px solid rgb(179, 175, 175);
   border-radius: 20px 20px 0 0;
   background-color: bisque;
+  text-align: center;
 }
 .cartgrid2 {
   grid-column: 1 / 2;
@@ -121,6 +122,7 @@
 .cartgrid6 {
   grid-column: 1 / 2;
   grid-row: 11 / 12;
+  text-align: center;
 }
 
 /*cartgriditem1*/
@@ -223,6 +225,8 @@
   grid-column: 3 / 4;
   grid-row: 1 / 2;
   width: 80%;
+  border: 2px solid grey;
+  border-radius: 25px;
 }
 
 /*gridcontainer11*/
@@ -246,11 +250,16 @@
 }
 
 .mainimg {
-  width: 100%;
+  width: 80%;
 }
 
 .sideimg {
   width: 20%;
   border: 2px solid black;
   border-radius: 10px;
+}
+
+.cart_item {
+  text-align: center;
+  font-size: larger;
 }
