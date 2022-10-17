@@ -212,18 +212,18 @@
   margin-top: 10px;
   gap: 10px;
 }
-.gridcontainer1 {
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
+.checkout_container {
+  display: grid;
+  grid-template-rows: 50px 1fr 110px;
+  border: 1px solid black;
+  margin: 0 20px;
 }
-.gridcontainer2 {
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
-}
-.gridcontainer3 {
-  grid-column: 3 / 4;
-  grid-row: 1 / 2;
-  width: 80%;
+
+.cart_item {
+  display: grid;
+  grid-template-columns: 60px 5fr 2fr;
+  grid-template-rows: 1fr 40px;
+  margin: 10px;
 }
 
 /*gridcontainer11*/
