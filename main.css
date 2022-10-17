@@ -181,17 +181,7 @@
   font-size: large;
 }
 /*buttons*/
-.addbtn {
-  background-color: aquamarine;
-  border-radius: 5px;
-  width: 100%;
-}
-.removebtn {
-  background-color: rgb(147, 150, 150);
-  border-radius: 5px;
-  color: white;
-  width: 70%;
-}
+
 .buy {
   background-color: rgb(32, 177, 32);
   border-radius: 5px;
@@ -205,12 +195,23 @@
 /*gridcontainer1*/
 .gridcontainer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 5%;
-  grid-auto-rows: auto;
-  width: 100%;
+  grid-template-columns: 1fr 350px;
+  margin: 20px 0;
 }
 
+.product_item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 350px 350px;
+  gap: 20px;
+  margin-left: 20px;
+}
+.product_item_bottom {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-top: 10px;
+  gap: 10px;
+}
 .gridcontainer1 {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
