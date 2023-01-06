@@ -1,5 +1,5 @@
 # watch-gallery
-reponsive watch gallery web app
+Watch gallery application has a frontend shopping/ordering, features and backend product data management features.
 
 
 This project was built by HTML, CSS, JavaScript, PHP and MySQL.
